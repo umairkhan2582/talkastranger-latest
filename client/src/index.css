@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Bright, Vibrant Color Scheme - Monkey.app Style */
+:root {
+  --primary: 280 80% 60%; /* Bright Purple */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 340 80% 60%; /* Hot Pink */
+  --secondary-foreground: 0 0% 100%;
+  --accent: 30 95% 60%; /* Vibrant Orange */
+  --accent-foreground: 0 0% 100%;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 280 80% 60%;
+  --radius: 1rem;
+}
+
+/* TAS Mascot animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+.wave-animation {
+  animation: wave 2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(99, 102, 241, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.7));
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/**
+ * Standard Responsive Styles
+ * These styles ensure proper rendering on mobile devices
+ */
+
+/* Standard mobile responsiveness */
+@media screen and (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  #root, main, .app-container, .content-area {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  img, video, iframe, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Basic mobile class targeting */
+html.mobile-device {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Scale down elements on mobile */
+@media screen and (max-width: 768px) {
+  img, video, iframe, svg, .card, .panel {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Extra padding for navigation */
+  nav, header, footer {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* Page content fixes */
+  .page-content {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* Standard mobile responsiveness (these apply to all mobile devices) */
+@media screen and (max-width: 768px) {
+  /* Basic mobile optimizations that won't break desktop */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Force single column layouts on mobile */
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile responsiveness for chat container */
+.chat-container.show-contacts .contacts-panel {
+  display: flex !important;
+  width: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 50;
+  background-color: white;
+}
+
+/* Mobile contacts overlay */
+.chat-container.show-contacts .contacts-overlay {
+  display: block !important;
+}
+
+/* Mobile responsive token trade buttons */
+@media (max-width: 768px) {
+  .token-trade-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .token-trade-buttons button {
+    width: 100%;
+  }
+  
+  .chat-header-buttons {
+    display: none;
+  }
+  
+  .chat-header-buttons-mobile {
+    display: flex;
+    margin-top: 0.5rem;
+    justify-content: space-between;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.5rem;
+  }
+}
+
+/* MONKEY.APP STYLE: Mirror self-view video */
+.mirror {
+  transform: scaleX(-1);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased text-foreground;
+    background-color: #f8f9fa; /* Light neutral background instead of green */
+  }
+  
+  /* Maintain primary color for buttons and gradients */
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-sky-500;
+  }
+  
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-white;
+  }
+}
